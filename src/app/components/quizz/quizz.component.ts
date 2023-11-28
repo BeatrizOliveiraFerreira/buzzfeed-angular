@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Type } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import quizz_questions from "../../../assets/data/quizz_questions.json"
 
@@ -44,7 +44,8 @@ export class QuizzComponent {
 
  playerChoose(value:string) {
   this.answers.push(value)
-  console.log(this.answers)
+  this.nextStep()
+  
  }
 
  async nextStep() {
@@ -53,9 +54,28 @@ export class QuizzComponent {
   if(this.questionMaxIndex > this.questionIndex) {
     this.questionSelected = this.questions[this.questionIndex]
   } else {
+    const finalAnswer:string = await this.checkResult(this.answers)
     this.finished = true
+    this.answerSelected = quizz_questions.results[finalAnswer as keyof
+    typeof quizz_questions.results]
+    console.log(this.answers)
   }
  }
+
+ async checkResult(answers:string[]) {
+  const result = answers.reduce((previous, current, i, arr) =>{
+    if (
+      arr.filter(item => item === previous).length > 
+      arr.filter(item => item === current).length 
+    ){
+      return previous
+    }else {
+      return current
+    }
+  })
+  return result
+ }
+
 }
 
 
