@@ -14,7 +14,7 @@
     },
     {
       "id":2,
-      "question": "Quem você comeria primeiro?",
+      "question": "O que você comeria primeiro?",
       "options":[
         {"id": 1, "name":"Açaí", "alias":"A"},
         {"id": 2, "name":"Picole", "alias":"A"},

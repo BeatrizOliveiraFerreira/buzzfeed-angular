@@ -76,6 +76,15 @@ export class QuizzComponent {
   return result
  }
 
+ getImagePath(result: string): string {
+  if (result === 'Você muito provavelmente é do calor!') {
+    return 'assets/imgs/de-praia.png';
+  } else if (result === 'Você muito provavelmente é do frio!') {
+    return 'assets/imgs/boneco-de-neve.png';
+  } else {
+    return ''; // Caminho da imagem padrão ou vazio se não houver correspondência
+  }
 }
 
 
+}
